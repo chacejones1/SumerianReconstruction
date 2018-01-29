@@ -1,7 +1,10 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 import processing as rw
 from networkx.algorithms import community
+#Written by Chace Jones
+
+''' A collection of simple community detection algorithms
+    with a demo '''
 
 
 def girvan_newman(G,verbose=False):

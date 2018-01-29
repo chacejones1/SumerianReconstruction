@@ -1,5 +1,8 @@
 import networkx as nx
 import regex as re
+#Written by Chace Jones
+
+
 ''' The purpose of this file is to process networks into different formats
     As well as to read and write files'''
 
