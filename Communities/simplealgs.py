@@ -37,10 +37,10 @@ def async_fluid(G, k=4):
        k = number of communities to look for, default 4
     """
     bestcom=community.asyn_fluidc(G,k)
-    print bestcom
+
     return bestcom
 
-def opt_async_fluid(G, kmin, kmax,verbose=True,rep=2):
+def opt_async_fluid(G, kmin, kmax,verbose=False,rep=2):
     '''Searches for the best k within the given range
        rep is the number of repetitions to try (may have had bad initialization'''
 
@@ -48,23 +48,25 @@ def opt_async_fluid(G, kmin, kmax,verbose=True,rep=2):
     bestcom=0
     bestp=0
     bestk=0
-    for k in range(0, rep):
+    for i in range(0, rep):
+        print "rep = " +str(rep+1)
         for k in range(kmin,kmax+1):
             com=async_fluid(G,k)
-            
+            print "k = " + str(k)
             partition=[]
-            for c in com: partition.append(c);
+            tc=com
+            for c in tc: partition.append(c);
             if verbose: print partition;
 
             p=community.performance(G,partition)
             if p > bestp:
                 bestp = p
-                bestcom=com
+                bestcom=partition
                 bestk=k
         
     print "Best K: " + str(bestk)
     print "Best P: " + str(bestp)
-        
+    
     return bestcom
  
 
@@ -117,6 +119,13 @@ def test(graph="barbell",algorithm="o_fl",k=-1,v=False,kmin=3,kmax=5):
         
     rw.write_file(G,"test.gexf")
 
-
+def relabel(G,com):
+    comlabel =1
+    
+    for c in com:
+        for n in c:
+            G.node[n]['community']=str(comlabel)
+        comlabel +=1
+    return G
 if __name__ == "__main__":
     test()
