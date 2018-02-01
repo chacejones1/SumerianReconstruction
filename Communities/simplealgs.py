@@ -49,7 +49,7 @@ def opt_async_fluid(G, kmin, kmax,verbose=False,rep=2):
     bestp=0
     bestk=0
     for i in range(0, rep):
-        print "rep = " +str(rep+1)
+        print "rep = " +str(i+1)
         for k in range(kmin,kmax+1):
             com=async_fluid(G,k)
             print "k = " + str(k)
@@ -63,6 +63,7 @@ def opt_async_fluid(G, kmin, kmax,verbose=False,rep=2):
                 bestp = p
                 bestcom=partition
                 bestk=k
+        print "Current best K = " + str(bestk)
         
     print "Best K: " + str(bestk)
     print "Best P: " + str(bestp)

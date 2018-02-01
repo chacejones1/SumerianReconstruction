@@ -2,12 +2,12 @@ import networkx as nx
 import processing as rw
 import simplealgs as sa
 
-G = rw.read_nx("gexf/GarshanaTabletGraph.gexf")
+G = rw.read_nx("GarshanaNameGraph.gexf")
 
 #remove high degree nodes
 toremove = []
 for n in G.nodes():
-    if G.degree(n)>2000 or G.degree(n) < 3:
+    if G.degree(n)>400 or G.degree(n) < 3:
         toremove.append(n)
 G.remove_nodes_from(toremove)
 
@@ -16,9 +16,9 @@ G.remove_nodes_from(toremove)
 G = max((G.subgraph(c) for c in nx.connected_components(G)), key=len)
 
 
-bestcom = sa.opt_async_fluid(G,kmin=5,kmax=8,rep=2)
+bestcom = sa.opt_async_fluid(G,kmin=10,kmax=15,rep=5)
 
 G = sa.relabel(G,bestcom)
 
-rw.write_file(G,"gexf/Tablets.gexf")
+rw.write_file(G,"gexf/NameComsAll.gexf")
 

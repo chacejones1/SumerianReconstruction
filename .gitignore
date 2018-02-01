@@ -2,3 +2,4 @@ Communities/data
 Communities/gexf
 *.pyc
 *~
+*.csv
