@@ -1,5 +1,7 @@
 Communities/data
 Communities/gexf
+Communities/gephi
+pngs
 *.pyc
 *~
 *.csv
